@@ -6,5 +6,4 @@ export interface Recipe {
     category: string;
     cookingTime: number;
     difficulty: string;
-    imageUrl: string;
 }

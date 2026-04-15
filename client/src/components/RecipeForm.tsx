@@ -15,7 +15,6 @@ const RecipeForm = ({
         category: "Breakfast",
         cookingTime: "",
         difficulty: "Easy",
-        imageUrl: "",
     });
 
     useEffect(() => {
@@ -32,27 +31,8 @@ const RecipeForm = ({
         setForm({ ...form, [e.target.name]: e.target.value });
     };
 
-    // 🔥 CHECK IF IMAGE LOADS
-    const isValidImageUrl = (url: string): Promise<boolean> => {
-        return new Promise((resolve) => {
-            const img = new Image();
-            img.src = url;
-
-            img.onload = () => resolve(true);
-            img.onerror = () => resolve(false);
-        });
-    };
-
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-
-        // 🚨 VALIDATE IMAGE
-        const isValid = await isValidImageUrl(form.imageUrl);
-
-        if (!isValid) {
-            alert("Invalid image URL. Please enter a working image link.");
-            return;
-        }
 
         try {
             const data = {
@@ -76,12 +56,11 @@ const RecipeForm = ({
                 category: "Breakfast",
                 cookingTime: "",
                 difficulty: "Easy",
-                imageUrl: "",
             });
 
             onSuccess();
         } catch (error: any) {
-            console.error(error.response?.data || error.message);
+            console.error(error);
             alert("Error occurred");
         }
     };
@@ -110,14 +89,6 @@ const RecipeForm = ({
                 <option value="Medium">Medium</option>
                 <option value="Hard">Hard</option>
             </select>
-
-            <input
-                name="imageUrl"
-                placeholder="Paste image URL (Unsplash, etc.)"
-                value={form.imageUrl}
-                onChange={handleChange}
-                required
-            />
 
             <button type="submit">
                 {editingRecipe ? "Update Recipe" : "Add Recipe"}

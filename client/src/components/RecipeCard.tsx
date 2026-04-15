@@ -1,4 +1,4 @@
-import type { Recipe } from "../types/Recipe";
+import { Recipe } from "../types/Recipe";
 import API from "../services/api";
 
 const RecipeCard = ({
@@ -18,21 +18,12 @@ const RecipeCard = ({
             alert("Recipe deleted!");
             onDelete();
         } catch (error) {
-            console.error("Delete error", error);
+            console.error(error);
         }
     };
 
     return (
         <div className="card">
-            <img
-                src={recipe.imageUrl}
-                alt={recipe.title}
-                onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                        "https://picsum.photos/300";
-                }}
-            />
-
             <h2>{recipe.title}</h2>
             <p>{recipe.description}</p>
 

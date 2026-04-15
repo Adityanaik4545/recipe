@@ -46,11 +46,6 @@ const recipeSchema: Schema = new Schema(
             required: true,
             enum: ["Easy", "Medium", "Hard"],
         },
-
-        imageUrl: {
-            type: String,
-            required: true,
-        },
     },
     { timestamps: true }
 );
