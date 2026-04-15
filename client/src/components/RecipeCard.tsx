@@ -14,7 +14,7 @@ const RecipeCard = ({
         if (!window.confirm("Are you sure?")) return;
 
         try {
-            await API.delete(`/recipes/${recipe._id}`);
+            await API.delete(`api/recipes/${recipe._id}`);
             alert("Recipe deleted!");
             onDelete();
         } catch (error) {
