@@ -11,14 +11,14 @@ const app = express();
 
 app.use(
     cors({
-        origin: "https://recipe-two-steel.vercel.app/", // 🔥 your frontend URL
+        origin: "https://recipe-two-steel.vercel.app",
         methods: ["GET", "POST", "PUT", "DELETE"],
         credentials: true,
     })
 );
 app.use(express.json());
 
-// ROUTES
+
 app.use("/api/recipes", recipeRoutes);
 
 app.get("/", (req, res) => {
